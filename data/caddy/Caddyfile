@@ -1,5 +1,9 @@
 :80 {
-    reverse_proxy {
-        to 127.0.0.1:8080
+    handle_path /files* {
+        reverse_proxy filebrowser:8080
+    }
+
+    handle {
+        respond "404 Not Found" 404
     }
 }

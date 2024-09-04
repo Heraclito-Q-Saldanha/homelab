@@ -1,0 +1,6 @@
+{
+    "port": 8080,
+    "log": "stdout",
+    "database": "/data/filebrowser/database.db",
+    "root": "/data"
+}

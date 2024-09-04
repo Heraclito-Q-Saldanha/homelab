@@ -1,0 +1,26 @@
+services:
+  caddy:
+    image: caddy:2.8.4-alpine
+    container_name: caddy
+    networks:
+      - webnet
+    ports:
+      - "80:80"
+    volumes:
+      - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    command: --config /data/filebrowser/settings.json --address 0.0.0.0
+    networks:
+      - webnet
+    volumes:
+      - ./data:/data
+    environment:
+      - PUID=$(id -u)
+      - PGID=$(id -g)
+
+networks:
+  webnet:
+    driver: bridge

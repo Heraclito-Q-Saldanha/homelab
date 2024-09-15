@@ -1,9 +1,36 @@
-:80 {
+alvorada.me {
     handle_path /files* {
-        reverse_proxy filebrowser:8080
+        reverse_proxy filebrowser:6464
     }
 
     handle {
+        respond "404 Not Found" 404
+    }
+
+    handle_errors {
+        respond "404 Not Found" 404
+    }
+}
+
+* {
+    handle {
+        reverse_proxy extras:8080
+    }
+    handle_errors {
+        respond "404 Not Found" 404
+    }
+}
+
+:80 {
+    handle_path /files* {
+        reverse_proxy filebrowser:6464
+    }
+
+    handle {
+        respond "404 Not Found" 404
+    }
+
+    handle_errors {
         respond "404 Not Found" 404
     }
 }

@@ -6,6 +6,7 @@ services:
       - webnet
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
 

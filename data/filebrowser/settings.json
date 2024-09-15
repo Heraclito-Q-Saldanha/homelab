@@ -1,5 +1,5 @@
 {
-    "port": 8080,
+    "port": 6464,
     "log": "stdout",
     "baseurl": "/files",
     "database": "/data/filebrowser/database.db",

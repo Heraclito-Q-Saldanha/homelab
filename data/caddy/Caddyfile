@@ -1,4 +1,4 @@
-import ./*.caddy
+import /etc/caddy/extras/*.caddy
 
 :80, :443, alvorada.me {
     handle_path /files* {

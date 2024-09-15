@@ -9,6 +9,7 @@ services:
       - "443:443"
     volumes:
       - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy/extras:/etc/caddy/extras
 
   filebrowser:
     image: filebrowser/filebrowser:latest

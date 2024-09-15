@@ -1,4 +1,6 @@
-alvorada.me {
+import ./*.caddy
+
+:80, :443, alvorada.me {
     handle_path /files* {
         reverse_proxy filebrowser:6464
     }
@@ -8,29 +10,6 @@ alvorada.me {
     }
 
     handle_errors {
-        respond "404 Not Found" 404
-    }
-}
-
-* {
-    handle {
-        reverse_proxy extras:8080
-    }
-    handle_errors {
-        respond "404 Not Found" 404
-    }
-}
-
-:80 {
-    handle_path /files* {
-        reverse_proxy filebrowser:6464
-    }
-
-    handle {
-        respond "404 Not Found" 404
-    }
-
-    handle_errors {
-        respond "404 Not Found" 404
+        respond "500 Internal Server Error" 500
     }
 }

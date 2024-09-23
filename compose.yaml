@@ -10,7 +10,7 @@ services:
     volumes:
       - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddy/extras:/etc/caddy/extras
-
+      - ./data/caddy/data:/data
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser

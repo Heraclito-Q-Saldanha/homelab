@@ -15,11 +15,13 @@ services:
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
-    command: --config /data/filebrowser/settings.json --address 0.0.0.0
+    command: --config /data/settings.json --address 0.0.0.0
     networks:
       - webnet
     volumes:
-      - ./data:/data
+      - ./data/filebrowser/files:/data/files
+      - ./data/filebrowser/settings.json:/data/settings.json
+      - ./data/filebrowser/database.db:/data/database.db
     environment:
       - PUID=$(id -u)
       - PGID=$(id -g)

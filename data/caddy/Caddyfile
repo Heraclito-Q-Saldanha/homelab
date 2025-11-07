@@ -1,15 +1,11 @@
 import /etc/caddy/extras/*.caddy
 
 :80, :443, alvorada.site {
-    handle_path /files* {
+    handle /files* {
         reverse_proxy filebrowser:6464
     }
 
-    handle {
-        respond "404 Not Found" 404
-    }
-
-    handle_errors {
-        respond "500 Internal Server Error" 500
+    handle /notes* {
+        reverse_proxy silverbullet:3000
     }
 }

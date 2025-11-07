@@ -3,7 +3,7 @@ services:
     image: caddy:2.8.4-alpine
     container_name: caddy
     networks:
-      - webnet
+      - homelab
     restart: unless-stopped
     ports:
       - "80:80"
@@ -17,20 +17,32 @@ services:
     container_name: filebrowser
     command: --config /data/settings.json --address 0.0.0.0
     networks:
-      - webnet
+      - homelab
     restart: unless-stopped
     volumes:
       - ./data/files:/data/files
       - ./data/filebrowser/settings.json:/data/settings.json
       - ./data/filebrowser/database.db:/data/database.db
     environment:
-      - PUID=$(id -u)
-      - PGID=$(id -g)
+      - PUID=${PUID}
+      - PGID=${PGID}
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet
+    container_name: silverbullet
+    networks:
+      - homelab
+    restart: unless-stopped
+    environment:
+      SB_URL_PREFIX: "/notes"
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+    volumes:
+      - ./data/silverbullet:/space
 
 volumes:
   caddy:
 
 networks:
-  webnet:
-    name: webnet
+  homelab:
+    name: homelab
     driver: bridge

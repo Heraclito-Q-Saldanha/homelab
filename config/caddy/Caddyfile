@@ -8,4 +8,8 @@ import /etc/caddy/extras/*.caddy
     handle /silverbullet* {
         reverse_proxy silverbullet:3000
     }
+
+    handle /polaris* {
+        reverse_proxy polaris:5050
+    }
 }

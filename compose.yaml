@@ -8,6 +8,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    env_file:
+      - path: .env
+        required: true
     volumes:
       - caddy:/data/
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
@@ -19,28 +22,41 @@ services:
     networks:
       - homelab
     restart: unless-stopped
+    env_file:
+      - path: .env
+        required: true
     volumes:
       - ./data:/data/files
       - ./config/filebrowser/settings.json:/data/settings.json
       - ./config/filebrowser/database.db:/data/database.db
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
   silverbullet:
     image: ghcr.io/silverbulletmd/silverbullet
     container_name: silverbullet
     networks:
       - homelab
     restart: unless-stopped
-    environment:
-      SB_URL_PREFIX: "/silverbullet"
-      PUID: "${PUID}"
-      PGID: "${PGID}"
+    env_file:
+      - path: .env
+        required: true
     volumes:
       - ./data/notes:/space
+  polaris:
+    image: registry.gitlab.com/connectical/container/polaris
+    container_name: polaris
+    networks:
+      - homelab
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./data/music:/music
+      - polaris/cache:/var/cache/polaris
+      - polaris/data:/var/lib/polaris
 
 volumes:
   caddy:
+  polaris:
 
 networks:
   homelab:

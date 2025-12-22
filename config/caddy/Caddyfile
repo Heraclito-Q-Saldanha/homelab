@@ -1,6 +1,6 @@
 import /etc/caddy/extras/*.caddy
 
-:80, :443, alvorada.site {
+:80, :443, {$DOMAIN} {
     handle /filebrowser* {
         reverse_proxy filebrowser:6464
     }

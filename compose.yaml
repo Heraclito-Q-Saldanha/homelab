@@ -51,8 +51,7 @@ services:
         required: true
     volumes:
       - ./data/music:/music
-      - polaris/cache:/var/cache/polaris
-      - polaris/data:/var/lib/polaris
+      - polaris:/var/lib/polaris
 
 volumes:
   caddy:

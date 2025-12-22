@@ -1,7 +1,7 @@
 {
     "port": 6464,
     "log": "stdout",
-    "baseurl": "/files",
+    "baseurl": "/filebrowser",
     "database": "/data/database.db",
     "root": "/data/files"
 }

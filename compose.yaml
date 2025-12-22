@@ -10,8 +10,8 @@ services:
       - "443:443"
     volumes:
       - caddy:/data/
-      - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./data/caddy/extras:/etc/caddy/extras
+      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./config/caddy/extras:/etc/caddy/extras
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
@@ -20,9 +20,9 @@ services:
       - homelab
     restart: unless-stopped
     volumes:
-      - ./data/files:/data/files
-      - ./data/filebrowser/settings.json:/data/settings.json
-      - ./data/filebrowser/database.db:/data/database.db
+      - ./data:/data/files
+      - ./config/filebrowser/settings.json:/data/settings.json
+      - ./config/filebrowser/database.db:/data/database.db
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -33,11 +33,11 @@ services:
       - homelab
     restart: unless-stopped
     environment:
-      SB_URL_PREFIX: "/notes"
+      SB_URL_PREFIX: "/silverbullet"
       PUID: "${PUID}"
       PGID: "${PGID}"
     volumes:
-      - ./data/silverbullet:/space
+      - ./data/notes:/space
 
 volumes:
   caddy:

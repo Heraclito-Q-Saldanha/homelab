@@ -1,11 +1,11 @@
 import /etc/caddy/extras/*.caddy
 
 :80, :443, alvorada.site {
-    handle /files* {
+    handle /filebrowser* {
         reverse_proxy filebrowser:6464
     }
 
-    handle /notes* {
+    handle /silverbullet* {
         reverse_proxy silverbullet:3000
     }
 }

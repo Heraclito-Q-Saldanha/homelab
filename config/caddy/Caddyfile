@@ -1,37 +1,32 @@
 import /etc/caddy/extras/*.caddy
 
-files.{$DOMAIN} {
+(common_tls) {
     tls {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 		resolvers 1.1.1.1
 	}
+}
+
+files.{$DOMAIN} {
+    import common_tls
 
     reverse_proxy filebrowser:6464
 }
 
 notes.{$DOMAIN} {
-    tls {
-		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-		resolvers 1.1.1.1
-	}
+    import common_tls
     
     reverse_proxy silverbullet:3000
 }
 
 music.{$DOMAIN} {
-    tls {
-		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-		resolvers 1.1.1.1
-	}
+    import common_tls
     
     reverse_proxy polaris:5050
 }
 
 movies.{$DOMAIN} {
-    tls {
-		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-		resolvers 1.1.1.1
-	}
+    import common_tls
     
     reverse_proxy jellyfin:8096
 }

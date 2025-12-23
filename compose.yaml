@@ -1,7 +1,8 @@
 services:
   caddy:
-    image: caddy:2.8.4-alpine
     container_name: caddy
+    build:
+      dockerfile: ./caddy.Dockerfile
     networks:
       - homelab
     restart: unless-stopped

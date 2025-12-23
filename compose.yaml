@@ -5,7 +5,6 @@ services:
       dockerfile: ./caddy.Dockerfile
     networks:
       - homelab
-    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -16,13 +15,13 @@ services:
       - caddy:/data/
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./config/caddy/extras:/etc/caddy/extras
+    restart: unless-stopped
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
     command: --config /data/settings.json --address 0.0.0.0
     networks:
       - homelab
-    restart: unless-stopped
     env_file:
       - path: .env
         required: true
@@ -30,38 +29,42 @@ services:
       - ./data:/data/files
       - ./config/filebrowser/settings.json:/data/settings.json
       - ./config/filebrowser/database.db:/data/database.db
+    restart: unless-stopped
   silverbullet:
     image: ghcr.io/silverbulletmd/silverbullet
     container_name: silverbullet
     networks:
       - homelab
-    restart: unless-stopped
     env_file:
       - path: .env
         required: true
     volumes:
       - ./data/notes:/space
+    restart: unless-stopped
   polaris:
     image: registry.gitlab.com/connectical/container/polaris
     container_name: polaris
     networks:
       - homelab
-    restart: unless-stopped
     env_file:
       - path: .env
         required: true
     volumes:
       - ./data/music:/music:ro
       - polaris:/var/lib/polaris
+    restart: unless-stopped
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
     networks:
       - homelab
-    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: true
     volumes:
       - ./data/movies:/media:ro
       - jellyfin:/config
+    restart: unless-stopped
 
 volumes:
   caddy:

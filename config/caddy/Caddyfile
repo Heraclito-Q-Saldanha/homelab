@@ -26,3 +26,12 @@ music.{$DOMAIN} {
     
     reverse_proxy polaris:5050
 }
+
+movies.{$DOMAIN} {
+    tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+		resolvers 1.1.1.1
+	}
+    
+    reverse_proxy jellyfin:8096
+}

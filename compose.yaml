@@ -51,12 +51,22 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./data/music:/music
+      - ./data/music:/music:ro
       - polaris:/var/lib/polaris
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    networks:
+      - homelab
+    restart: unless-stopped
+    volumes:
+      - ./data/movies:/media:ro
+      - jellyfin:/config
 
 volumes:
   caddy:
   polaris:
+  jellyfin:
 
 networks:
   homelab:

@@ -30,3 +30,9 @@ movies.{$DOMAIN} {
     
     reverse_proxy jellyfin:8096
 }
+
+qbittorrent.{$DOMAIN} {
+    import common_tls
+
+    reverse_proxy qbittorrent:8080
+}

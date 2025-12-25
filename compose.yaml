@@ -19,16 +19,16 @@ services:
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
-    command: --config /data/settings.json --address 0.0.0.0
+    command: --config /config/settings.json --address 0.0.0.0
     networks:
       - homelab
     env_file:
       - path: .env
         required: true
     volumes:
-      - ./data:/data/files
-      - ./config/filebrowser/settings.json:/data/settings.json
-      - ./config/filebrowser/database.db:/data/database.db
+      - ./data:/data
+      - filebrowser:/config
+      - ./config/filebrowser/settings.json:/config/settings.json
     restart: unless-stopped
   silverbullet:
     image: ghcr.io/silverbulletmd/silverbullet
@@ -89,6 +89,7 @@ volumes:
   polaris:
   jellyfin:
   qbittorrent:
+  filebrowser:
 
 networks:
   homelab:

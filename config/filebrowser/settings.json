@@ -1,6 +1,6 @@
 {
     "port": 6464,
     "log": "stdout",
-    "database": "/data/database.db",
-    "root": "/data/files"
+    "database": "/config/database.db",
+    "root": "/data/"
 }

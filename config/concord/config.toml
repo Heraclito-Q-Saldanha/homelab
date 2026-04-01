@@ -1,0 +1,5 @@
+title = "comunidade libertária"
+icon_path = "/config/icon.png"
+channels = [
+    "general",
+]

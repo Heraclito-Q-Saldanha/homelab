@@ -85,11 +85,24 @@ services:
     restart: unless-stopped
   cloudflared:
     image: cloudflare/cloudflared:latest
+    container_name: cloudflared
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
     networks:
       - homelab
     environment:
       - CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    restart: unless-stopped
+  concord:
+    image: heraclitoqsaldanha/concord-server:latest
+    container_name: concord
+    networks:
+      - homelab
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - concord:/data/
+      - ./config/concord/:/config/
     restart: unless-stopped
 
 volumes:
@@ -98,6 +111,7 @@ volumes:
   jellyfin:
   qbittorrent:
   filebrowser:
+  concord:
 
 networks:
   homelab:

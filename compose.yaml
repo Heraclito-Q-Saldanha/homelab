@@ -92,17 +92,17 @@ services:
     environment:
       - CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
     restart: unless-stopped
-  concord:
-    image: heraclitoqsaldanha/concord-server:latest
-    container_name: concord
+  antares:
+    image: heraclitoqsaldanha/antares-server:latest
+    container_name: antares
     networks:
       - homelab
     env_file:
       - path: .env
         required: true
     volumes:
-      - concord:/data/
-      - ./config/concord/:/config/
+      - antares:/data/
+      - ./config/antares/:/config/
     restart: unless-stopped
 
 volumes:
@@ -111,7 +111,7 @@ volumes:
   jellyfin:
   qbittorrent:
   filebrowser:
-  concord:
+  antares:
 
 networks:
   homelab:

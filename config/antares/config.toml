@@ -1,0 +1,8 @@
+title = "comunidade libertária"
+icon_path = "/config/icon.png"
+admin_public_keys = []
+file_path = "/data/files"
+
+public_https_address = "antares.alvorada.site"
+public_ipv4_address = "0.0.0.0"
+public_ipv6_address = "::"

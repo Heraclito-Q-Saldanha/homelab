@@ -27,6 +27,19 @@ services:
     volumes:
       - ./config/rathole/client.toml:/etc/rathole/client.toml
     restart: unless-stopped
+  samba:
+    image: dockurr/samba
+    container_name: samba
+    networks:
+      - homelab
+    ports:
+      - 445:445
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./data:/shared
+    restart: unless-stopped
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser

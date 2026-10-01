@@ -1,0 +1,21 @@
+[server]
+bind_addr = "0.0.0.0:2333"
+default_token = "use_a_secret_that_only_you_know"
+
+[server.services.files]
+bind_addr = "0.0.0.0:7474"
+
+[server.services.notes]
+bind_addr = "0.0.0.0:3000"
+
+[server.services.music]
+bind_addr = "0.0.0.0:5050"
+
+[server.services.movies]
+bind_addr = "0.0.0.0:8096"
+
+[server.services.torrent]
+bind_addr = "0.0.0.0:8080"
+
+[server.services.harmon]
+bind_addr = "0.0.0.0:6464"

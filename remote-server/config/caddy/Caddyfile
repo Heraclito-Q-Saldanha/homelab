@@ -1,0 +1,25 @@
+import /etc/caddy/extras/*.caddy
+
+files.remote.alvorada.me {
+    reverse_proxy rathole:7474
+}
+
+notes.remote.alvorada.me {
+    reverse_proxy rathole:3000
+}
+
+music.remote.alvorada.me {
+    reverse_proxy rathole:5050
+}
+
+movies.remote.alvorada.me {
+    reverse_proxy rathole:8096
+}
+
+torrent.remote.alvorada.me {
+    reverse_proxy rathole:8080
+}
+
+harmon.remote.alvorada.me {
+    reverse_proxy rathole:6464
+}

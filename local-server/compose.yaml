@@ -1,8 +1,7 @@
 services:
   caddy:
+    image: caddy:2.11.4-alpine
     container_name: caddy
-    build:
-      dockerfile: ./caddy.Dockerfile
     networks:
       - homelab
     ports:
@@ -16,6 +15,18 @@ services:
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./config/caddy/extras:/etc/caddy/extras
     restart: unless-stopped
+  rathole:
+    image: rapiz1/rathole
+    container_name: rathole
+    command: --client /etc/rathole/client.toml
+    networks:
+      - homelab
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./config/rathole/client.toml:/etc/rathole/client.toml
+    restart: unless-stopped
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
@@ -26,8 +37,8 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./data:/data
       - filebrowser:/config
+      - ./data:/data
       - ./config/filebrowser/settings.json:/config/settings.json
     restart: unless-stopped
   silverbullet:
@@ -50,8 +61,8 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./data/music:/music:ro
       - polaris:/var/lib/polaris
+      - ./data/music:/music:ro
     restart: unless-stopped
   jellyfin:
     image: jellyfin/jellyfin
@@ -62,8 +73,8 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./data/movies:/media:ro
       - jellyfin:/config
+      - ./data/movies:/media:ro
     restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -82,15 +93,6 @@ services:
     ports:
       - 6881:6881
       - 6881:6881/udp
-    restart: unless-stopped
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
-    networks:
-      - homelab
-    environment:
-      - CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
     restart: unless-stopped
   harmon:
     image: heraclitoqsaldanha/harmon-server:latest

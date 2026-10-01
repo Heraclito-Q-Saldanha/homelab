@@ -1,0 +1,21 @@
+[client]
+remote_addr = "remote.alvorada.me:2333"
+default_token = "use_a_secret_that_only_you_know"
+
+[client.services.files]
+local_addr = "filebrowser:7474"
+
+[client.services.notes]
+local_addr = "silverbullet:3000"
+
+[client.services.music]
+local_addr = "polaris:5050"
+
+[client.services.movies]
+local_addr = "jellyfin:8096"
+
+[client.services.torrent]
+local_addr = "qbittorrent:8080"
+
+[client.services.harmon]
+local_addr = "harmon:6464"

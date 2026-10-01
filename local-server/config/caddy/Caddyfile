@@ -1,0 +1,25 @@
+import /etc/caddy/extras/*.caddy
+
+http://files.local.alvorada.me {
+    reverse_proxy filebrowser:7474
+}
+
+http://notes.local.alvorada.me {
+    reverse_proxy silverbullet:3000
+}
+
+http://music.local.alvorada.me {
+    reverse_proxy polaris:5050
+}
+
+http://movies.local.alvorada.me {
+    reverse_proxy jellyfin:8096
+}
+
+http://torrent.local.alvorada.me {
+    reverse_proxy qbittorrent:8080
+}
+
+http://harmon.local.alvorada.me {
+    reverse_proxy harmon:6464
+}

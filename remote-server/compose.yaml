@@ -1,0 +1,39 @@
+services:
+  caddy:
+    image: caddy:2.11.4-alpine
+    container_name: caddy
+    networks:
+      - homelab
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - caddy:/data/
+      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./config/caddy/extras:/etc/caddy/extras
+    restart: unless-stopped
+  rathole:
+    image: rapiz1/rathole
+    container_name: rathole
+    command: --server /etc/rathole/server.toml
+    networks:
+      - homelab
+    ports:
+      - "2333:2333"
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./config/rathole/server.toml:/etc/rathole/server.toml
+    restart: unless-stopped
+
+volumes:
+  caddy:
+
+networks:
+  homelab:
+    name: homelab
+    driver: bridge

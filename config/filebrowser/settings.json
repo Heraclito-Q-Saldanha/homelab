@@ -1,5 +1,5 @@
 {
-    "port": 6464,
+    "port": 7474,
     "log": "stdout",
     "database": "/config/database.db",
     "root": "/data/",

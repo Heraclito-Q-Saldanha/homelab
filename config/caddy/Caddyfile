@@ -10,7 +10,7 @@ import /etc/caddy/extras/*.caddy
 files.{$DOMAIN} {
     import common_tls
 
-    reverse_proxy filebrowser:6464
+    reverse_proxy filebrowser:7474
 }
 
 notes.{$DOMAIN} {
@@ -35,4 +35,10 @@ torrent.{$DOMAIN} {
     import common_tls
 
     reverse_proxy qbittorrent:8080
+}
+
+harmon.{$DOMAIN} {
+    import common_tls
+
+    reverse_proxy harmon:6464
 }

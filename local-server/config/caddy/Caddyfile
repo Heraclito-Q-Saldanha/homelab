@@ -23,3 +23,7 @@ http://torrent.local.alvorada.me {
 http://harmon.local.alvorada.me {
     reverse_proxy harmon:6464
 }
+
+http://gitea.local.alvorada.me {
+    reverse_proxy gitea:4343
+}

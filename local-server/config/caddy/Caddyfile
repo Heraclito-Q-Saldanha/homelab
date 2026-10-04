@@ -1,29 +1,34 @@
 import /etc/caddy/extras/*.caddy
 
-http://files.local.alvorada.me {
+{
+    acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+    tls_resolvers 1.1.1.1
+}
+
+files.local.alvorada.me {
     reverse_proxy filebrowser:7474
 }
 
-http://notes.local.alvorada.me {
+notes.local.alvorada.me {
     reverse_proxy silverbullet:3000
 }
 
-http://music.local.alvorada.me {
+music.local.alvorada.me {
     reverse_proxy polaris:5050
 }
 
-http://movies.local.alvorada.me {
+movies.local.alvorada.me {
     reverse_proxy jellyfin:8096
 }
 
-http://torrent.local.alvorada.me {
+torrent.local.alvorada.me {
     reverse_proxy qbittorrent:8080
 }
 
-http://harmon.local.alvorada.me {
+harmon.local.alvorada.me {
     reverse_proxy harmon:6464
 }
 
-http://gitea.local.alvorada.me {
+gitea.local.alvorada.me {
     reverse_proxy gitea:4343
 }
